@@ -8,7 +8,6 @@ import { CourseCard } from "@/components/coursecard/CourseCard";
 //   return res.json();
 // }
 
-
 export default function ProductsPage() {
   // const products: Product[] = await getProducts();
 

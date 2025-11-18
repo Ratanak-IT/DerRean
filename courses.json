@@ -1,6 +1,6 @@
 [
   {
-    "id": 2,
+    "id": 1,
     "title": "Advanced React & Next.js Development",
     "instructor": "Michael Chen",
     "instructorImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
@@ -17,7 +17,7 @@
     "updated": "Updated 2025"
   },
   {
-    "id": 3,
+    "id": 2,
     "title": "Python for Data Science & Machine Learning",
     "instructor": "Dr. Emily Rodriguez",
     "instructorImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80",
@@ -34,7 +34,7 @@
     "updated": "Updated 2025"
   },
   {
-    "id": 4,
+    "id": 3,
     "title": "iOS App Development with Swift & SwiftUI",
     "instructor": "James Wilson",
     "instructorImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80",
@@ -51,7 +51,7 @@
     "updated": "Updated 2025"
   },
   {
-    "id": 5,
+    "id": 4,
     "title": "Master Deep Learning & Neural Networks",
     "instructor": "Dr. Alex Kumar",
     "instructorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80",
@@ -68,7 +68,7 @@
     "updated": "Updated 2025"
   },
   {
-    "id": 6,
+    "id": 5,
     "title": "Full Stack JavaScript: Node.js & Express",
     "instructor": "Lisa Anderson",
     "instructorImage": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80",
@@ -85,7 +85,7 @@
     "updated": "Updated 2025"
   },
   {
-    "id": 7,
+    "id": 6,
     "title": "Android Development Masterclass",
     "instructor": "David Park",
     "instructorImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=80",
@@ -102,7 +102,7 @@
     "updated": "Updated 2025"
   },
   {
-    "id": 8,
+    "id": 7,
     "title": "AWS Cloud Practitioner Complete Course",
     "instructor": "Robert Taylor",
     "instructorImage": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&q=80",
@@ -119,6 +119,23 @@
     "updated": "Updated 2025"
   },
   {
+    "title": "Complete Web Development Bootcamp 2025",
+    "instructor": "Sarah Johnson",
+    "instructorImage": "https://beecrowd.com/wp-content/uploads/2024/04/2022-07-19-Melhores-cursos-de-Python.jpg",
+    "rating": 4.9,
+    "reviews": 12450,
+    "students": 45230,
+    "price": 89.99,
+    "originalPrice": 159.99,
+    "image": "https://beecrowd.com/wp-content/uploads/2024/04/2022-07-19-Melhores-cursos-de-Python.jpg",
+    "category": "Web Development",
+    "level": "Beginner",
+    "duration": "42 hours",
+    "bestseller": true,
+    "updated": "Updated 2025",
+    "id": 9
+  },
+  {
     "title": "Java",
     "instructor": "Chan Chhaya",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL1nB8JZ_LXTYJ2CVrfm8dSCS-WCy9GAA2jQ&s",
@@ -127,6 +144,17 @@
     "instructorImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB6Te6hpxdXlu-l-5XB8SxMlfxT4rTUjQosQ&s",
     "originalPrice": "199.99",
     "duration": "45",
-    "id": 9
+    "id": 8
+  },
+  {
+    "title": "Linux",
+    "instructor": "Kim Chansokpeng",
+    "image": "https://itequia.com/wp-content/uploads/2024/07/imagen-e1760013257334.webp",
+    "price": "60",
+    "category": "Cyber",
+    "instructorImage": "https://img-c.udemycdn.com/course/750x422/5181942_dc28_14.jpg",
+    "originalPrice": "89.99",
+    "duration": "43",
+    "id": 10
   }
 ]

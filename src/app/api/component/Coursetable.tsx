@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Trash2, X, AlertTriangle } from "lucide-react";
+import { Trash2, AlertTriangle } from "lucide-react";
 
 interface Course {
   id: number;

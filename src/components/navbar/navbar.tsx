@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun, BookOpen, Heart, Globe } from "lucide-react";
@@ -9,7 +9,7 @@ interface NavbarProps {
   wishlistCount?: number;
 }
 
-export function Navbar({ wishlistCount = 0 }: NavbarProps) {
+export default function Navbar({ wishlistCount = 0 }: NavbarProps) {
   const pathname = usePathname();
 
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -22,17 +22,16 @@ export function Navbar({ wishlistCount = 0 }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
-  const [isKhmer, setIsKhmer] = useState(true);
-
-  // Toggle Google Translate language
-  const changeLanguage = (lang: "km" | "en") => {
-    const select = document.querySelector("select.goog-te-combo") as HTMLSelectElement;
-    if (select) {
-      select.value = lang;
-      select.dispatchEvent(new Event("change"));
+  const [isKhmer, setIsKhmer] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      const storedLanguage = localStorage.getItem("language");
+      return storedLanguage ? storedLanguage === "km" : true;
     }
-  };
+    // Default to Khmer on server render
+    return true;
+  });
 
+  // Update theme and language when either changes
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
@@ -58,6 +57,17 @@ export function Navbar({ wishlistCount = 0 }: NavbarProps) {
   ];
 
   const handleCloseMenu = () => setIsMenuOpen(false);
+
+  // Toggle language
+  const changeLanguage = (lang: "km" | "en") => {
+    localStorage.setItem("language", lang); // Store the language in localStorage
+    setIsKhmer(lang === "km");
+    const select = document.querySelector("select.goog-te-combo") as HTMLSelectElement;
+    if (select) {
+      select.value = lang;
+      select.dispatchEvent(new Event("change"));
+    }
+  };
 
   return (
     <header
@@ -123,7 +133,6 @@ export function Navbar({ wishlistCount = 0 }: NavbarProps) {
             <button
               onClick={() => {
                 changeLanguage(isKhmer ? "en" : "km");
-                setIsKhmer(!isKhmer);
               }}
               aria-label="Change Language"
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
