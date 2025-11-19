@@ -156,5 +156,16 @@
     "originalPrice": "89.99",
     "duration": "43",
     "id": 10
+  },
+  {
+    "title": "Spring boot",
+    "instructor": "Chan Chhaya",
+    "image": "https://www.adm.ee/wordpress/wp-content/uploads/2023/12/Spring.png",
+    "price": "59.99",
+    "category": "Backend",
+    "instructorImage": "https://www.adm.ee/wordpress/wp-content/uploads/2023/12/Spring.png",
+    "originalPrice": "89.99",
+    "duration": "43",
+    "id": 11
   }
 ]
