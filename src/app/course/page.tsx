@@ -1,20 +1,20 @@
-// import { Product } from "@/types/producttype";
 "use client";
-import { CourseCard } from "@/components/coursecard/CourseCard";
 
-
-// async function getProducts(): Promise<Product[]> {
-//   const res = await fetch("http://localhost:3000/api/products", { cache: "no-store" });
-//   return res.json();
-// }
-
+import CourseCard from "@/components/coursecard/CourseCard";
+import { useRouter } from "next/navigation";
 export default function ProductsPage() {
-  // const products: Product[] = await getProducts();
+  const router = useRouter();
+  const onCourseClick = (courseId: number) => {
+    router.push(`/courses/${courseId}`);
+  };
+  // Dummy click handler
 
   return (
-    
-    <div className="dark:bg-black h-screen">
-      <CourseCard onCourseClick={() => {}} />
-     </div>
+    <div className="dark:bg-black min-h-screen py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold text-white mb-6">All Courses</h1>
+        <CourseCard onCourseClick={onCourseClick} />
+      </div>
+    </div>
   );
 }

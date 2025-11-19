@@ -1,11 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { Code2, Play, Star, Users } from 'lucide-react';
+import {useRouter} from "next/navigation";
 
 import Image from 'next/image';
 
 
 export function HeroSection() {
+  const router =useRouter();
   return (
      <section className="relative pt-24 md:pt-32 pb-20 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-indigo-950/30">
       
@@ -58,7 +60,7 @@ export function HeroSection() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10"
             >
-              <button className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-10 py-3 font-medium text-sm sm:text-base">
+              <button onClick={()=>router.push("/course")} className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-10 py-3 font-medium text-sm sm:text-base">
                 Explore Courses
               </button>
               <button className="px-10 py-3 border rounded-full border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-800 font-medium text-sm sm:text-base flex items-center justify-center gap-2">

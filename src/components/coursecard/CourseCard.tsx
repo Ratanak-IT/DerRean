@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Clock, Users, TrendingUp } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-// Define Course type
+// Course type
 export interface CourseType {
   id: number;
   title: string;
@@ -21,16 +22,25 @@ export interface CourseType {
   level?: string;
   duration?: string;
   bestseller?: boolean;
-  updated?: string;
 }
 
-export function CourseCard({
-  onCourseClick,
-}: {
-  onCourseClick: (courseId: number) => void;
-}) {
+// Props
+export interface CourseCardProps {
+  onCourseClick?: (courseId: number) => void;
+}
+
+export default function CourseCard({ onCourseClick }: CourseCardProps) {
   const [courses, setCourses] = useState<CourseType[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  const handleCourseClick = (id: number) => {
+    if (onCourseClick) {
+      onCourseClick(id);
+    } else {
+      router.push(`/courses/${id}`);
+    }
+  };
 
   useEffect(() => {
     async function fetchCourses() {
@@ -47,18 +57,17 @@ export function CourseCard({
     fetchCourses();
   }, []);
 
-  if (loading) {
-    return <p className="text-center py-10">Loading courses...</p>;
-  }
+  if (loading) return <p className="text-center py-10">Loading courses...</p>;
 
   return (
     <section className="py-12 md:py-16 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Course grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {courses.map((course, index) => {
             const discount = course.originalPrice
-              ? Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100)
+              ? Math.round(
+                  ((course.originalPrice - course.price) / course.originalPrice) * 100
+                )
               : 0;
 
             return (
@@ -69,9 +78,8 @@ export function CourseCard({
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.6 }}
               >
-                {/* Course Card */}
                 <div
-                  onClick={() => onCourseClick(course.id)}
+                  onClick={() => handleCourseClick(course.id)}
                   className="overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 group cursor-pointer h-full flex flex-col"
                 >
                   {/* Image */}
@@ -84,27 +92,25 @@ export function CourseCard({
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       unoptimized
                     />
-
                     {/* Badges */}
                     <div className="absolute top-3 left-3 flex flex-col gap-2">
                       {course.bestseller && (
-                        <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-400 hover:bg-yellow-500 text-gray-900 rounded-full border-0 transition-colors">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-400 text-gray-900 rounded-full text-xs font-medium">
                           <TrendingUp className="w-3 h-3" />
-                          <span className="text-xs">Bestseller</span>
+                          Bestseller
                         </span>
                       )}
                       {course.level && (
-                        <span className="inline-flex items-center px-3 py-1 bg-indigo-500 hover:bg-indigo-600 text-white rounded-full border-0 transition-colors">
-                          <span className="text-xs">{course.level}</span>
+                        <span className="inline-flex items-center px-3 py-1 bg-indigo-500 text-white rounded-full text-xs font-medium">
+                          {course.level}
                         </span>
                       )}
                     </div>
-
-                    {/* Discount badge */}
+                    {/* Discount */}
                     {discount > 0 && (
                       <div className="absolute top-3 right-3">
-                        <span className="inline-flex items-center px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-full border-0 transition-colors">
-                          <span className="text-xs">{discount}% OFF</span>
+                        <span className="inline-flex items-center px-3 py-1 bg-red-500 text-white rounded-full text-xs font-medium">
+                          {discount}% OFF
                         </span>
                       </div>
                     )}
@@ -112,8 +118,10 @@ export function CourseCard({
 
                   {/* Content */}
                   <div className="p-5 flex flex-col flex-grow">
-                    <p className="text-indigo-500 dark:text-indigo-400 mb-2 text-sm">{course.category}</p>
-                    <h3 className="text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">
+                    <p className="text-indigo-500 dark:text-indigo-400 mb-2 text-sm">
+                      {course.category}
+                    </p>
+                    <h3 className="text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-indigo-500 transition-colors">
                       {course.title}
                     </h3>
 
@@ -125,18 +133,22 @@ export function CourseCard({
                           alt={course.instructor}
                           width={32}
                           height={32}
-                          className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                           unoptimized
                         />
                       </div>
-                      <span className="text-gray-600 dark:text-gray-400 text-sm">{course.instructor}</span>
+                      <span className="text-gray-600 dark:text-gray-400 text-sm">
+                        {course.instructor}
+                      </span>
                     </div>
 
                     {/* Rating & Reviews */}
                     <div className="flex items-center gap-2 mb-3">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="text-gray-900 dark:text-white text-sm">{course.rating || 0}</span>
+                        <span className="text-gray-900 dark:text-white text-sm">
+                          {course.rating || 0}
+                        </span>
                       </div>
                       <span className="text-gray-600 dark:text-gray-400 text-sm">
                         ({course.reviews?.toLocaleString() || 0})
@@ -151,7 +163,9 @@ export function CourseCard({
                       </div>
                       <div className="flex items-center gap-1">
                         <Users className="w-4 h-4" />
-                        <span>{course.students ? (course.students / 1000).toFixed(1) + "k" : "0k"}</span>
+                        <span>
+                          {course.students ? (course.students / 1000).toFixed(1) + "k" : "0k"}
+                        </span>
                       </div>
                     </div>
 
@@ -160,7 +174,9 @@ export function CourseCard({
                     {/* Price */}
                     <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
                       <div className="flex items-center gap-2">
-                        <span className="text-gray-900 dark:text-white font-semibold">${course.price}</span>
+                        <span className="text-gray-900 dark:text-white font-semibold">
+                          ${course.price}
+                        </span>
                         {course.originalPrice && (
                           <span className="text-gray-500 dark:text-gray-500 line-through text-sm">
                             ${course.originalPrice}
@@ -177,8 +193,6 @@ export function CourseCard({
             );
           })}
         </div>
-
-        {/* Load more button */}
       </div>
     </section>
   );
