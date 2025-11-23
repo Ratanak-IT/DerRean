@@ -2,7 +2,7 @@
 export type CourseLevel = "Beginner" | "Intermediate" | "Advanced" | "All Levels";
 
 export interface Course {
-  id: string; // UUID from Supabase
+  id: string; // UUID
   title: string;
   instructor: string;
   description: string;
@@ -13,8 +13,15 @@ export interface Course {
   price: number;
   originalprice: number | null;
   image: string;
+  enrolled: number | null;
   instructorimage: string;
-  content: string; // e.g., "• Learn React\n• Build apps\n• Deploy"
-  created_at?: string;
-  updated_at?: string | null;
+  rating: number | null;
+  reviews: number | null;
+  students: number | null;
+  content: string; // stored as JSON string in Supabase
+}
+export interface CourseContent {
+  overview: string;
+  curriculum: string[];
+  requirements: string[];
 }

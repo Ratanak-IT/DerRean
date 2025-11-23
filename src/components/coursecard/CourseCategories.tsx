@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Code2, Database, Smartphone, Brain, Cloud, Terminal } from 'lucide-react';
+import OurContent from "../ourcontent/ourcontent";
 
 const categories = [
   { icon: Code2, name: 'Web Development', count: 450, color: 'from-blue-400 to-cyan-500' },
@@ -13,23 +14,9 @@ const categories = [
 
 export function CourseCategories() {
   return (
-    <section className="py-12 md:py-16 bg-white dark:bg-gray-950">
+    <section className="md:py-16 bg-gray-100 dark:bg-[#0e0e28]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-gray-900 dark:text-white mb-4">
-            Explore Categories
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Choose from our most popular programming categories and start learning today
-          </p>
-        </motion.div>
-
+        <OurContent title="Explore Categories" text="Choose from our most popular programming categories and start learning today" />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
           {categories.map((category, index) => (
             <motion.div

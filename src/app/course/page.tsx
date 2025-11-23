@@ -1,19 +1,23 @@
 "use client";
 
+import { useState } from "react";
+
 import CourseCard from "@/components/coursecard/CourseCard";
-import { useRouter } from "next/navigation";
-export default function ProductsPage() {
-  const router = useRouter();
-  const onCourseClick = (courseId: string) => {
-    router.push(`/courses/${courseId}`);
-  };
-  // Dummy click handler
+import { CourseSearch } from "@/components/searchbar/CourseSearch";
+
+export default function CoursesPage() {
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className="dark:bg-black min-h-screen py-10">
+    <div className="dark:bg-gray-900 bg-gray-100 min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-white mb-6">All Courses</h1>
-        <CourseCard onCourseClick={onCourseClick} />
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+          All Courses
+        </h1>
+
+        {/* Search Bar */}
+        <CourseSearch searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+        <CourseCard searchTerm={searchTerm} />
       </div>
     </div>
   );
