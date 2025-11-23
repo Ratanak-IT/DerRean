@@ -5,14 +5,14 @@ import Image from "next/image";
 import { Trash2, AlertTriangle } from "lucide-react";
 
 interface Course {
-  id: number;
+  id: string;
   title: string;
   instructor_name: string;
   price: number;
   category: string;
   image?: string;
   instructorimage?: string;
-  original_price?: number;
+  originalprice?: number;
   duration?: string;
 }
 
@@ -22,23 +22,25 @@ interface CourseTableProps {
 }
 
 export default function CourseTable({ courses, onDelete }: CourseTableProps) {
-  const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleConfirmDelete = async () => {
-    if (deleteId === null) return;
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/courses?id=${deleteId}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Failed to delete course");
-      setDeleteId(null);
-      onDelete();
-    } catch (err) {
-      console.error("Delete course error:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (!deleteId) return;
+  setLoading(true);
+  try {
+    const res = await fetch(`/api/courses?id=${deleteId}`, { method: "DELETE" });
+    const data = await res.json();
+    console.log("DELETE response:", data);
+    if (!res.ok) throw new Error(data?.error || "Failed to delete course");
+    setDeleteId(null);
+    onDelete();
+  } catch (err) {
+    console.error("Delete course error:", err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const CourseRow = ({ course }: { course: Course }) => (
     <tr className="border-b hover:bg-gray-50 transition duration-200">
@@ -51,7 +53,7 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
         <span className="font-medium text-gray-800">{course.title}</span>
       </td>
 
-      <td className="p-3 flex items-center gap-3">
+      <td className="p-3 gap-3">
         {course.instructorimage ? (
           <Image src={course.instructorimage} alt={course.instructor_name ?? "Instructor image"} width={36} height={36} className="rounded-full object-cover" />
         ) : (
@@ -69,7 +71,7 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
       <td className="p-3">
         <div className="flex flex-col">
           <span className="font-bold text-green-600">${course.price}</span>
-          {course.original_price && <span className="text-xs line-through text-gray-400">${course.original_price}</span>}
+          {course.originalprice && <span className="text-xs line-through text-gray-400">${course.originalprice}</span>}
         </div>
       </td>
 
@@ -131,4 +133,4 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
       </div>
     </>
   );
-}
+} 

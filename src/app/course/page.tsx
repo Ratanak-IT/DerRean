@@ -4,7 +4,7 @@ import CourseCard from "@/components/coursecard/CourseCard";
 import { useRouter } from "next/navigation";
 export default function ProductsPage() {
   const router = useRouter();
-  const onCourseClick = (courseId: number) => {
+  const onCourseClick = (courseId: string) => {
     router.push(`/courses/${courseId}`);
   };
   // Dummy click handler

@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddCourseForm from "../api/component/AddCourseForm";
-
-import { supabase } from "@/lib/supabaseClient";
 import CourseTable from "../api/component/Coursetable";
+import { supabase } from "@/lib/supabaseClient";
 
 interface Course {
-  id: number;
+  id: string;
   title: string;
   instructor_name: string;
   price: number;
@@ -19,19 +18,58 @@ interface Course {
 }
 
 export default function DashboardPage() {
-    const [open, setOpen] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [usernameInput, setUsernameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
   const [courses, setCourses] = useState<Course[]>([]);
+  const [open, setOpen] = useState(false);
 
   const fetchCourses = async () => {
     const { data, error } = await supabase.from("courses").select("*");
-    if (error) return console.error(error);
-    setCourses(data || []);
+    if (error) console.error(error);
+    else setCourses(data || []);
   };
 
-  useEffect(() => {
-    const loadCourses = async () => await fetchCourses();
-    loadCourses();
-  }, []);
+  const handleLogin = () => {
+    // Set your static username/password here
+    const correctUsername = "admin";
+    const correctPassword = "admin1234";
+
+    if (usernameInput === correctUsername && passwordInput === correctPassword) {
+      setAuthenticated(true);
+      fetchCourses();
+    } else {
+      alert("Invalid username or password");
+    }
+  };
+
+  if (!authenticated) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen space-y-4">
+        <h2 className="text-2xl font-bold">Enter Dashboard Credentials</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={usernameInput}
+          onChange={(e) => setUsernameInput(e.target.value)}
+          className="border px-4 py-2 rounded w-64"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={passwordInput}
+          onChange={(e) => setPasswordInput(e.target.value)}
+          className="border px-4 py-2 rounded w-64"
+        />
+        <button
+          onClick={handleLogin}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Login
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 space-y-6">
@@ -40,10 +78,11 @@ export default function DashboardPage() {
 
       {open && (
         <AddCourseForm
-          onAdd={() => console.log("refresh list here")}
+          onAdd={() => fetchCourses()}
           onClose={() => setOpen(false)}
         />
       )}
+
       <CourseTable courses={courses} onDelete={fetchCourses} />
     </div>
   );
