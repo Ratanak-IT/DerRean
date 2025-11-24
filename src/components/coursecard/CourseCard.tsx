@@ -63,26 +63,32 @@ export default function CourseCard({ searchTerm = "", course }: CourseCardProps)
     fetchCourses();
   }, [course]);
 
-  // Filter courses in real-time only if searchTerm is used
   useEffect(() => {
-    if (course) return; // skip filtering for single course
+  if (course) return; // skip filtering for single course
 
-    if (!searchTerm.trim()) {
-      setFilteredCourses(courses);
-      return;
-    }
+  if (!searchTerm.trim()) {
+    setFilteredCourses(courses);
+    return;
+  }
 
-    const lower = searchTerm.toLowerCase();
-    const filtered = courses.filter(
-      (c) =>
-        c.title.toLowerCase().includes(lower) ||
-        c.category.toLowerCase().includes(lower) ||
-        c.instructor.toLowerCase().includes(lower) ||
-        (c.description?.toLowerCase().includes(lower) ?? false)
+  const lower = searchTerm.toLowerCase();
+  const filtered = courses.filter((c) => {
+    const title = c.title?.toLowerCase() || "";
+    const category = c.category?.toLowerCase() || "";
+    const instructor = c.instructor?.toLowerCase() || "";
+    const description = c.description?.toLowerCase() || "";
+
+    return (
+      title.includes(lower) ||
+      category.includes(lower) ||
+      instructor.includes(lower) ||
+      description.includes(lower)
     );
+  });
 
-    setFilteredCourses(filtered);
-  }, [searchTerm, courses, course]);
+  setFilteredCourses(filtered);
+}, [searchTerm, courses, course]);
+
 
   const handleCourseClick = (id: string) => {
     router.push(`/courses/${id}`);
