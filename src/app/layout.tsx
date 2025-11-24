@@ -26,10 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <UserProvider>
+          {/* Navbar will have access to user context */}
           <Navbar wishlistCount={0} />
           {children}
         </UserProvider>

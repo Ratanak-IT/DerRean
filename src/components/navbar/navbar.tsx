@@ -122,14 +122,14 @@ export default function Navbar({ wishlistCount = 0 }: NavbarProps) {
             )}
 
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <X className="w-6 h-6 dark:text-gray-300" /> : <Menu className="w-6 h-6 dark:text-gray-300" />}
             </button>
           </div>
         </div>
 
         {/* Mobile nav */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-800">
+          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-100">
             <div className="flex flex-col gap-4">
               {navLinks.map((item) => {
                 const isActive = pathname === item.href;

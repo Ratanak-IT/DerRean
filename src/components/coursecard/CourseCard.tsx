@@ -28,9 +28,10 @@ export interface CourseType {
 interface CourseCardProps {
   searchTerm?: string;
   course?: CourseType; // Optional single course for wishlist
+  limit?: number;
 }
 
-export default function CourseCard({ searchTerm = "", course }: CourseCardProps) {
+export default function CourseCard({ searchTerm = "", course, limit }: CourseCardProps) {
   const [courses, setCourses] = useState<CourseType[]>([]);
   const [filteredCourses, setFilteredCourses] = useState<CourseType[]>([]);
   const [loading, setLoading] = useState(true);
@@ -105,7 +106,10 @@ export default function CourseCard({ searchTerm = "", course }: CourseCardProps)
     );
   }
 
-  const renderCourses = course ? [course] : filteredCourses;
+  let renderCourses = course ? [course] : filteredCourses;
+  if (limit) {
+    renderCourses = renderCourses.slice(0, limit);
+  }
 
   if (renderCourses.length === 0) {
     return (
@@ -121,7 +125,7 @@ export default function CourseCard({ searchTerm = "", course }: CourseCardProps)
   return (
     <section className="py-2 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
           {renderCourses.map((c, index) => (
             <motion.div
               key={c.id}

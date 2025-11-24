@@ -25,7 +25,7 @@ export default function Home() {
 
         {/* Course Grid – No props needed! Handles click & routing itself */}
         <div className="pb-16">
-          <CourseCard />
+          <CourseCard limit={4}/>
         </div>
       </section>
     </>
