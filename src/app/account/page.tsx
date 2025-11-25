@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -32,7 +32,9 @@ export default function AccountPage() {
   useEffect(() => {
     const loadProfile = async () => {
       setIsLoading(true);
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (!user) {
         setIsLoading(false);
         return;
@@ -106,9 +108,13 @@ export default function AccountPage() {
     const fileName = `${userId}/${type}_${Date.now()}.${fileExt}`;
 
     // Delete old file if exists
-    const oldPath = type === "avatar" ? profile?.avatar_url : profile?.cover_url;
+    const oldPath =
+      type === "avatar" ? profile?.avatar_url : profile?.cover_url;
     if (oldPath && oldPath.includes(userId)) {
-      await supabase.storage.from("avatars").remove([oldPath]).catch(() => {});
+      await supabase.storage
+        .from("avatars")
+        .remove([oldPath])
+        .catch(() => {});
     }
 
     const { data, error } = await supabase.storage
@@ -128,7 +134,9 @@ export default function AccountPage() {
     if (!formData || !profile) return;
     setIsSaving(true);
 
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) return;
 
     // Upload new images if changed
@@ -160,7 +168,11 @@ export default function AccountPage() {
       .eq("id", user.id);
 
     if (!error) {
-      const updatedProfile = { ...formData, avatar_url: avatarPath, cover_url: coverPath };
+      const updatedProfile = {
+        ...formData,
+        avatar_url: avatarPath,
+        cover_url: coverPath,
+      };
       setProfile(updatedProfile);
       setFormData(updatedProfile);
       setPreviewAvatar(null);
@@ -194,8 +206,13 @@ export default function AccountPage() {
     return data.publicUrl;
   };
 
-  const coverUrl = previewCover || (profile?.cover_url ? getPublicUrl(profile.cover_url) : null);
-  const avatarUrl = previewAvatar || (profile?.avatar_url ? getPublicUrl(profile.avatar_url) : "/default-avatar.png");
+  const coverUrl =
+    previewCover ||
+    (profile?.cover_url ? getPublicUrl(profile.cover_url) : null);
+  const avatarUrl: string =
+    previewAvatar ||
+    (profile?.avatar_url ? getPublicUrl(profile.avatar_url) : "") ||
+    "/default-avatar.png";
 
   if (isLoading) {
     return (
@@ -218,7 +235,10 @@ export default function AccountPage() {
       {/* Header */}
       <header className="border-b border-gray-200 dark:border-gray-700 px-4 py-5">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <button onClick={() => window.history.back()} className="font-medium hover:opacity-80 flex items-center gap-2">
+          <button
+            onClick={() => window.history.back()}
+            className="font-medium hover:opacity-80 flex items-center gap-2"
+          >
             Back
           </button>
           <h1 className="text-2xl font-bold">Account Settings</h1>
@@ -276,12 +296,23 @@ export default function AccountPage() {
               {/* Avatar */}
               <div className="relative group">
                 <div className="w-40 h-40 rounded-2xl border-8 border-white dark:border-gray-800 bg-gray-200 dark:bg-gray-700 overflow-hidden shadow-2xl ring-4 ring-gray-50 dark:ring-gray-900">
-                  <Image src={avatarUrl} alt="Avatar" width={160} height={160} className="w-full h-full object-cover" />
+                  <Image
+  src={avatarUrl || "/default-avatar.png"}
+  alt="Avatar"
+  width={160}
+  height={160}
+  className="w-full h-full object-cover"
+/>
                 </div>
                 {isEditing && (
                   <label className="absolute bottom-3 right-3 bg-indigo-600 text-white p-3 rounded-xl cursor-pointer hover:scale-110 transition shadow-lg">
                     <Camera size={24} />
-                    <input type="file" accept="image/*" onChange={handleAvatarChange} className="hidden" />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleAvatarChange}
+                      className="hidden"
+                    />
                   </label>
                 )}
               </div>
@@ -297,9 +328,13 @@ export default function AccountPage() {
                     className="text-3xl font-bold bg-transparent border-b-2 border-indigo-600 focus:outline-none w-full px-2 py-1"
                   />
                 ) : (
-                  <h2 className="text-3xl font-bold">{profile.full_name || "Set your name"}</h2>
+                  <h2 className="text-3xl font-bold">
+                    {profile.full_name || "Set your name"}
+                  </h2>
                 )}
-                <p className="text-gray-500 dark:text-gray-400 mt-2">{profile.email}</p>
+                <p className="text-gray-500 dark:text-gray-400 mt-2">
+                  {profile.email}
+                </p>
               </div>
             </div>
 
@@ -307,7 +342,9 @@ export default function AccountPage() {
             {isEditing ? (
               <div className="space-y-6 mt-10">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Bio</label>
+                  <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">
+                    Bio
+                  </label>
                   <textarea
                     name="bio"
                     value={formData?.bio || ""}
@@ -319,7 +356,9 @@ export default function AccountPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Email</label>
+                  <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">
+                    Email
+                  </label>
                   <input
                     type="email"
                     value={profile.email || ""}
@@ -346,7 +385,9 @@ export default function AccountPage() {
               </div>
             ) : (
               <div className="mt-10">
-                <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">About Me</h3>
+                <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">
+                  About Me
+                </h3>
                 <p className="text-lg leading-relaxed whitespace-pre-wrap">
                   {profile.bio || "No bio yet. Click Edit to add one!"}
                 </p>
