@@ -2,7 +2,7 @@
 import { HeroSection } from "@/components/hero/HeroSection";
 import { CourseCategories } from "@/components/coursecard/CourseCategories";
 import CourseCard from "@/components/coursecard/CourseCard";
-import OurContent from "@/components/ourcontent/Ourcontent";
+import OurContent from "@/components/ourcontent/OurContent";
 // FIXED: Correct import
   // ← This was wrong!
 
