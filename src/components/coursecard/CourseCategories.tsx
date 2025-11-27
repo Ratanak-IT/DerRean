@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Code2, Database, Smartphone, Brain, Cloud, Terminal } from 'lucide-react';
-import OurContent from "../ourcontent/ourcontent";
+import OurContent from "../ourcontent/Ourcontent";
 
 const categories = [
   { icon: Code2, name: 'Web Development', count: 450, color: 'from-blue-400 to-cyan-500' },

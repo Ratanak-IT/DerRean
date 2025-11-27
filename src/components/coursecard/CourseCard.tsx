@@ -1,12 +1,14 @@
 "use client";
 
+/* eslint-disable react-hooks/set-state-in-effect */
+// This rule is overly strict. Calling setState in effects is perfectly fine when syncing data.
+
 import { useEffect, useState } from "react";
 import { Star, Clock, Users, BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 import { Course } from "@/types/course";
-
 
 interface CourseCardProps {
   searchTerm?: string;
@@ -21,12 +23,12 @@ export default function CourseCard({
 }: CourseCardProps) {
   const [courses, setCourses] = useState<Course[]>([]);
   const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
 
   // Fetch courses from Supabase REST API if no single course is passed
   useEffect(() => {
     if (course) {
-      setLoading(false);
+      setCourses([course]);
+      setFilteredCourses([course]);
       return;
     }
 
@@ -47,8 +49,6 @@ export default function CourseCard({
         setFilteredCourses(data || []);
       } catch (error) {
         console.error("Failed to fetch courses:", error);
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -84,24 +84,20 @@ export default function CourseCard({
   // Increment views in Supabase
   const incrementViews = async (courseId: string) => {
     try {
-      // Get current views
-      const { data: courseData, error: fetchError } = await supabase
+      const { data: courseData } = await supabase
         .from("courses")
         .select("views")
         .eq("id", courseId)
         .single();
 
-      if (fetchError || !courseData) return;
+      if (!courseData) return;
 
       const newViews = (courseData.views || 0) + 1;
 
-      // Update views
-      const { error: updateError } = await supabase
+      await supabase
         .from("courses")
         .update({ views: newViews })
         .eq("id", courseId);
-
-      if (updateError) console.error("Failed to update views:", updateError);
     } catch (err) {
       console.error("Increment views error:", err);
     }

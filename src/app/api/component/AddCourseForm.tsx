@@ -96,7 +96,7 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
       setLoading(false);
     }
   };
-
+  
   return (
     <>
       {/* Trigger Button */}
