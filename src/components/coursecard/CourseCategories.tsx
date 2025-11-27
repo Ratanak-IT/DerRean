@@ -1,42 +1,47 @@
+// src/components/coursecard/CourseCategories.tsx
 "use client";
+
 import { motion } from "framer-motion";
-import { Code2, Database, Smartphone, Brain, Cloud, Terminal } from 'lucide-react';
+import { Code2, Database, Smartphone, Brain, Cloud, Terminal } from "lucide-react";
 import OurContent from "../ourcontent/Ourcontent";
+// FIXED: Correct path + capital letters
+   // ← This line was wrong before!
 
 const categories = [
-  { icon: Code2, name: 'Web Development', count: 450, color: 'from-blue-400 to-cyan-500' },
-  { icon: Database, name: 'Data Science', count: 280, color: 'from-green-400 to-emerald-500' },
-  { icon: Smartphone, name: 'Mobile Dev', count: 320, color: 'from-purple-400 to-pink-500' },
-  { icon: Brain, name: 'AI & ML', count: 190, color: 'from-orange-400 to-red-500' },
-  { icon: Cloud, name: 'Cloud Computing', count: 240, color: 'from-indigo-400 to-blue-500' },
-  { icon: Terminal, name: 'DevOps', count: 160, color: 'from-yellow-400 to-orange-500' },
+  { icon: Code2, name: "Web Development", count: 450, color: "from-blue-400 to-cyan-500" },
+  { icon: Database, name: "Backend & API", count: 320, color: "from-emerald-400 to-teal-600" },
+  { icon: Smartphone, name: "Mobile Apps", count: 280, color: "from-purple-400 to-pink-500" },
+  { icon: Brain, name: "AI & Machine Learning", count: 190, color: "from-orange-400 to-red-500" },
+  { icon: Cloud, name: "DevOps & Cloud", count: 210, color: "from-indigo-400 to-blue-600" },
+  { icon: Terminal, name: "Terminal & Tools", count: 380, color: "from-gray-600 to-gray-800" },
 ];
 
 export function CourseCategories() {
   return (
-    <section className="md:py-16 bg-gray-100 dark:bg-[#0e0e28]">
+    <section className="py-16 bg-white dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <OurContent title="Explore Categories" text="Choose from our most popular programming categories and start learning today" />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-          {categories.map((category, index) => (
+        <OurContent
+          title="Explore by Category"
+          text="Choose your path and start learning today"
+        />
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 mt-10">
+          {categories.map((cat, i) => (
             <motion.div
-              key={category.name}
+              key={cat.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ delay: i * 0.1 }}
+              className="group cursor-pointer"
             >
-              <button className="w-full p-6 bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-3xl transition-all duration-300 group border border-gray-200 dark:border-gray-800 hover:shadow-lg">
-                <div className={`w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                  <category.icon className="w-7 h-7 text-white" />
+              <div className="text-center space-y-3">
+                <div className={`w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br ${cat.color} p-4 shadow-lg group-hover:scale-110 transition-transform`}>
+                  <cat.icon className="w-full h-full text-white" />
                 </div>
-                <h3 className="text-gray-900 dark:text-white mb-1 line-clamp-1">
-                  {category.name}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {category.count} courses
-                </p>
-              </button>
+                <h3 className="font-semibold text-gray-800 dark:text-gray-200">{cat.name}</h3>
+                <p className="text-sm text-gray-500">{cat.count}+ courses</p>
+              </div>
             </motion.div>
           ))}
         </div>

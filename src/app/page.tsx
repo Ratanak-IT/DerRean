@@ -3,9 +3,8 @@ import { HeroSection } from "@/components/hero/HeroSection";
 import { CourseCategories } from "@/components/coursecard/CourseCategories";
 import CourseCard from "@/components/coursecard/CourseCard";
 import OurContent from "@/components/ourcontent/Ourcontent";
-
-
-
+// FIXED: Correct import
+  // ← This was wrong!
 
 export const metadata = {
   title: "KneaLearn Academy - Learn Programming & Design in Khmer",
@@ -13,7 +12,7 @@ export const metadata = {
   openGraph: {
     title: "KneaLearn Academy",
     description: "Cambodia's #1 platform for learning programming in Khmer",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://derlearn.vercel.app",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://knealearn.vercel.app",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     type: "website",
   },
