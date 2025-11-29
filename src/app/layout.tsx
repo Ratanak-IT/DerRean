@@ -8,6 +8,7 @@ import Navbar from "@/components/navbar/navbar";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { Inter } from 'next/font/google'
+import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-primary' })
 
@@ -38,7 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             />
           </WishlistProvider>
         </UserProvider>
+        <Footer/>
       </body>
     </html>
+    
   );
 }
