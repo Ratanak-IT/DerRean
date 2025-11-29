@@ -279,7 +279,7 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                     <input
                       required
                       type="url"
-                      placeholder="https://example.com/course.jpg"
+                 
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
                       value={formData.image}
                       onChange={(e) => setFormData({ ...formData, image: e.target.value })}
@@ -294,7 +294,7 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                     <input
                       required
                       type="url"
-                      placeholder="https://example.com/instructor.jpg"
+                    
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
                       value={formData.instructorimage}
                       onChange={(e) => setFormData({ ...formData, instructorimage: e.target.value })}

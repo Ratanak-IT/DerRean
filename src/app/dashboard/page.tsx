@@ -80,19 +80,17 @@ export default function DashboardPage() {
   }
   return (
     <div className="p-6 space-y-6">
-    <h1 className="text-2xl font-bold mt-[50px]">Course Dashboard</h1>
+      <h1 className="text-2xl font-bold mt-[50px]">Course Dashboard</h1>
 
-    {/* Add Course Button */}
+      {/* Add Course Button */}
 
-    {open && (
       <AddCourseForm onAdd={fetchCourses} onClose={() => setOpen(false)} />
-    )}
 
-    {/* Dashboard Stats */}
-    <DashboardStats />
+      {/* Dashboard Stats */}
+      <DashboardStats />
 
-    {/* Course Table */}
-    <CourseTable courses={courses} onDelete={fetchCourses} />
-  </div>
+      {/* Course Table */}
+      <CourseTable courses={courses} onDelete={fetchCourses} />
+    </div>
   );
 }
