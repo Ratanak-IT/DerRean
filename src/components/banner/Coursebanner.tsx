@@ -89,7 +89,7 @@ export default function CourseBanner() {
   };
 
   return (
-    <div className="relative w-full h-64 md:h-70 lg:h-96 overflow-hidden bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 transition-colors">
+    <div className="relative w-full h-64 md:h-70 lg:h-96 overflow-hidden mt-10 md:mt-20 lg:mt-10 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 transition-colors">
 
       {/* Background floating orbs */}
       <div className="absolute inset-0 overflow-hidden">
