@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: DESCRIPTION,
-  keywords: "derlearn, khmer courses, programming, react, nextjs, supabase, elearning cambodia",
+  keywords: "PlovRean, khmer courses, programming, react, nextjs, supabase, elearning cambodia",
   authors: [{ name: "TEAM ISTAD" }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
