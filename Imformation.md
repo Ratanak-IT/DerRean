@@ -69,8 +69,8 @@ PlovRean is a modern web platform built with **Next.js, TypeScript, Tailwind CSS
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/Ratanak-IT/DerRean.git
-cd DerRean
+git clone https://github.com/Ratanak-IT/PlovRean
+cd PlovRean
 2. **Install dependencies**
 ```bash
 npm install
