@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const SITE_NAME = "PlovRean Academy";
 const DESCRIPTION =
   "Learn programming, web development, and design with professional. Start your journey today!";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://derlearn.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://plovrean.vercel.app";
 const OG_IMAGE = `${SITE_URL}/linkshow.png`;
 
 export const metadata: Metadata = {

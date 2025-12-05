@@ -98,7 +98,7 @@ export default function EnrollButton({ courseId }: EnrollButtonProps) {
       ? "Processing..."
       : enrolled
         ? "Unenroll"
-        : "Enroll Now";
+        : "Add to Wishlist";
 
   const disabled = loading || !userId;
 
@@ -118,3 +118,8 @@ export default function EnrollButton({ courseId }: EnrollButtonProps) {
     </button>
   );
 }
+
+
+
+
+
