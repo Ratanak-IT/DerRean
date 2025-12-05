@@ -119,32 +119,32 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+              className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b">
-                <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
+              <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3">
                   <BookOpen className="text-indigo-600" />
                   Add New Course
                 </h2>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 hover:bg-gray-100 rounded-full transition"
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition"
                 >
-                  <X size={24} className="text-gray-500" />
+                  <X size={24} className="text-gray-500 dark:text-gray-300" />
                 </button>
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="p-6 space-y-5">
+              <form onSubmit={handleSubmit} className="p-6 space-y-5 text-gray-800 dark:text-gray-200">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Title */}
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <label className="flex items-center gap-2 text-sm font-medium">
                       <FileText size={16} />
                       Course Title
                     </label>
@@ -152,7 +152,7 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                       required
                       type="text"
                       placeholder="e.g. Complete React Masterclass 2025"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     />
@@ -160,7 +160,7 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
 
                   {/* Instructor */}
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <label className="flex items-center gap-2 text-sm font-medium">
                       <User size={16} />
                       Instructor Name
                     </label>
@@ -168,32 +168,33 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                       required
                       type="text"
                       placeholder="e.g. John Doe"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.instructor}
                       onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
                     />
                   </div>
 
-                  {/* Category & Level */}
+                  {/* Category */}
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Category</label>
+                    <label className="text-sm font-medium">Category</label>
                     <input
                       required
                       type="text"
                       placeholder="e.g. Web Development"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     />
                   </div>
 
+                  {/* Level */}
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <label className="flex items-center gap-2 text-sm font-medium">
                       <Trophy size={16} />
                       Difficulty Level
                     </label>
                     <select
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.level}
                       onChange={(e) => setFormData({ ...formData, level: e.target.value as CourseLevel })}
                     >
@@ -204,9 +205,9 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                     </select>
                   </div>
 
-                  {/* Duration & Lessons */}
+                  {/* Duration */}
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <label className="flex items-center gap-2 text-sm font-medium">
                       <Clock size={16} />
                       Duration
                     </label>
@@ -214,14 +215,15 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                       required
                       type="text"
                       placeholder="e.g. 24 hours"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.duration}
                       onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                     />
                   </div>
 
+                  {/* Lessons */}
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <label className="flex items-center gap-2 text-sm font-medium">
                       <List size={16} />
                       Number of Lessons
                     </label>
@@ -230,7 +232,7 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                       type="number"
                       min="1"
                       placeholder="48"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.lessons}
                       onChange={(e) => setFormData({ ...formData, lessons: e.target.value })}
                     />
@@ -239,7 +241,7 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
 
                 {/* Description */}
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                  <label className="flex items-center gap-2 text-sm font-medium">
                     <FileText size={16} />
                     Course Description
                   </label>
@@ -247,23 +249,23 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                     required
                     rows={4}
                     placeholder="Write a compelling description about this course..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 resize-none transition"
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   />
                 </div>
 
-                {/* What You'll Learn */}
+                {/* What Students Will Learn */}
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                  <label className="flex items-center gap-2 text-sm font-medium">
                     <List size={16} />
                     What Students Will Learn (one per line)
                   </label>
                   <textarea
                     required
                     rows={5}
-                    placeholder="• Build full-stack web apps with React & Node.js&#10;• Master TypeScript from scratch&#10;• Deploy apps to Vercel & AWS&#10;• Learn authentication with NextAuth"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none font-mono text-sm"
+                    placeholder="• Build full-stack web apps with React & Node.js&#10;• Master TypeScript from scratch"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono text-sm resize-none transition"
                     value={formData.content}
                     onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                   />
@@ -272,42 +274,40 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
                 {/* Image URLs */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <label className="flex items-center gap-2 text-sm font-medium">
                       <Link2 size={16} />
                       Course Image URL
                     </label>
                     <input
                       required
                       type="url"
-                 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.image}
                       onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <label className="flex items-center gap-2 text-sm font-medium">
                       <User size={16} />
                       Instructor Image URL
                     </label>
                     <input
                       required
                       type="url"
-                    
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition"
                       value={formData.instructorimage}
                       onChange={(e) => setFormData({ ...formData, instructorimage: e.target.value })}
                     />
                   </div>
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit Buttons */}
                 <div className="flex gap-4 pt-4">
                   <button
                     type="button"
                     onClick={() => setIsOpen(false)}
-                    className="flex-1 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition font-medium"
+                    className="flex-1 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition font-medium"
                   >
                     Cancel
                   </button>
@@ -334,9 +334,11 @@ export default function AddCourseForm({ onAdd, onClose }: AddCourseFormProps) {
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
-              className={`px-6 py-4 rounded-xl shadow-2xl text-white font-medium flex items-center gap-3 min-w-80 ${
-                toast.type === "success" ? "bg-gradient-to-r from-green-600 to-emerald-600" : "bg-gradient-to-r from-red-600 to-rose-600"
-              }`}
+              className={`px-6 py-4 rounded-xl shadow-2xl font-medium flex items-center gap-3 min-w-80
+                ${toast.type === "success"
+                  ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white"
+                  : "bg-gradient-to-r from-red-600 to-rose-600 text-white"
+                } dark:shadow-gray-800`}
             >
               {toast.type === "success" ? "Success" : "Error"}
               <span className="flex-1">{toast.message}</span>

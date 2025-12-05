@@ -71,7 +71,7 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
 
   // 🔥 ONE TABLE ROW
   const CourseRow = ({ course }: { course: Course }) => (
-    <tr className="border-b hover:bg-gray-50 transition duration-200">
+    <tr className="border-b transition duration-200">
       <td className="p-3 flex items-center gap-3">
         {course.image ? (
           <Image
@@ -86,7 +86,9 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
             No Image
           </div>
         )}
-        <span className="font-medium text-gray-800">{course.title}</span>
+        <span className="font-medium text-gray-800 dark:text-white">
+          {course.title}
+        </span>
       </td>
 
       <td className="p-3 items-center gap-3">
@@ -103,11 +105,12 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
             No Image
           </div>
         )}
-        
       </td>
 
       <td className="p-3">
-        <span className="text-gray-700">{course.instructor}</span>
+        <span className="text-gray-700 dark:text-white">
+          {course.instructor}
+        </span>
       </td>
       <td className="p-3">
         <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">
@@ -115,7 +118,9 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
         </span>
       </td>
 
-      <td className="p-3 text-gray-600">{course.duration ?? "-"}</td>
+      <td className="p-3 text-[15px] text-gray-600 dark:text-white">
+        {course.duration ?? "-"}
+      </td>
 
       <td className="p-3 text-center flex justify-center gap-2">
         {/* EDIT BUTTON */}
@@ -175,8 +180,8 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
       {/* Update*/}
       {editCourse && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="bg-white p-6 rounded-xl shadow-lg w-[95%] max-w-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-blue-700">
+          <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg w-[95%] max-w-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">
               Update Course
             </h2>
 
@@ -186,18 +191,15 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
                 onChange={(e) =>
                   setEditCourse({ ...editCourse, title: e.target.value })
                 }
-                className="border p-2 rounded"
+                className="border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none transition"
                 placeholder="Course Title"
               />
               <input
                 value={editCourse.instructor ?? ""}
                 onChange={(e) =>
-                  setEditCourse({
-                    ...editCourse,
-                    instructor: e.target.value,
-                  })
+                  setEditCourse({ ...editCourse, instructor: e.target.value })
                 }
-                className="border p-2 rounded"
+                className="border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none transition"
                 placeholder="Instructor"
               />
               <input
@@ -205,7 +207,7 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
                 onChange={(e) =>
                   setEditCourse({ ...editCourse, category: e.target.value })
                 }
-                className="border p-2 rounded"
+                className="border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none transition"
                 placeholder="Category"
               />
               <input
@@ -213,7 +215,7 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
                 onChange={(e) =>
                   setEditCourse({ ...editCourse, duration: e.target.value })
                 }
-                className="border p-2 rounded"
+                className="border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none transition"
                 placeholder="Duration"
               />
               <input
@@ -221,7 +223,7 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
                 onChange={(e) =>
                   setEditCourse({ ...editCourse, image: e.target.value })
                 }
-                className="border p-2 rounded"
+                className="border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none transition"
                 placeholder="Course Image URL"
               />
               <input
@@ -232,7 +234,7 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
                     instructorimage: e.target.value,
                   })
                 }
-                className="border p-2 rounded"
+                className="border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none transition"
                 placeholder="Instructor Image URL"
               />
             </div>
@@ -240,14 +242,14 @@ export default function CourseTable({ courses, onDelete }: CourseTableProps) {
             <div className="flex justify-end gap-3 mt-6">
               <button
                 onClick={() => setEditCourse(null)}
-                className="px-4 py-2 bg-gray-300 rounded"
+                className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-400 dark:hover:bg-gray-600 transition"
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpdate}
                 disabled={updating}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+                className="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50 transition"
               >
                 {updating ? "Updating..." : "Save Changes"}
               </button>

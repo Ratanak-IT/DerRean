@@ -192,7 +192,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="max-w-2xl mx-auto text-gray-700 dark:text-gray-300"
+              className="max-w-2xl mx-auto text-gray-700 dark:text-white text-[20px]"
             >
               Have questions? We love to hear from you. Send us a message and we
               will respond as soon as possible.
@@ -391,10 +391,10 @@ export default function ContactPage() {
                           key={index}
                           className="pb-4 border-b border-gray-200 dark:border-gray-700 last:border-0 last:pb-0"
                         >
-                          <h3 className="text-gray-900 dark:text-white mb-2">
+                          <h3 className="text-gray-900 dark:text-white mb-2 text-[20px]">
                             {faq.question}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-400">
+                          <p className="text-gray-600 dark:text-gray-200 text-[18px] ">
                             {faq.answer}
                           </p>
                         </div>

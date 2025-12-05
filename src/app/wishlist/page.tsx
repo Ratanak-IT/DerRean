@@ -92,7 +92,7 @@ export default function WishlistPage() {
         {/* Welcome banner */}
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white mb-8">
           <h1 className="text-3xl font-bold mb-2">Welcome back! 👋</h1>
-          <p className="text-blue-100">
+          <p className="text-white text-[18px]">
             Continue your learning journey and achieve your goals
           </p>
         </div>
@@ -102,7 +102,7 @@ export default function WishlistPage() {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">Enrolled Courses</p>
+                <p className="text-gray-600 dark:text-gray-200 text-[18px]">Enrolled Courses</p>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
                   {enrolledCourses.length}
                 </p>
@@ -116,7 +116,7 @@ export default function WishlistPage() {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">In Progress</p>
+                <p className="text-gray-600 dark:text-gray-200 text-[18px]">In Progress</p>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
                   {enrolledCourses.length}
                 </p>
@@ -130,7 +130,7 @@ export default function WishlistPage() {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">Completed</p>
+                <p className="text-gray-600 dark:text-gray-200 text-[18px]">Completed</p>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">0</p>
               </div>
               <div className="bg-yellow-100 dark:bg-yellow-900 p-3 rounded-lg">
@@ -142,7 +142,7 @@ export default function WishlistPage() {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">Hours Learned</p>
+                <p className="text-gray-600 dark:text-gray-200 text-[18px]">Hours Learned</p>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
                   {enrolledCourses.reduce((acc, course) => {
                     return acc + (parseInt(course.duration) || 0);

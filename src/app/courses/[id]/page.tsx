@@ -93,25 +93,25 @@ export default async function CourseDetailPage({ params }: PageProps) {
       <section className="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg border dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-4">Course Overview</h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            <h2 className="text-[30px] font-bold mb-4">Course Overview</h2>
+            <p className="text-gray-700 dark:text-white leading-relaxed text-[20px]">
               {course.content?.overview ?? "Overview coming soon..."}
             </p>
           </div>
 
           {/* Curriculum */}
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg border dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-8">What You Will Learn</h2>
+            <h2 className="text-[30px] font-bold mb-8">What You Will Learn</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {course.content?.curriculum?.length ? (
                 course.content.curriculum.map((c, idx) => (
                   <div key={idx} className="flex items-start gap-4">
                     <CheckCircle className="text-green-600 mt-0.5" size={24} />
-                    <span className="text-gray-800 dark:text-gray-200">{c}</span>
+                    <span className="text-gray-800 dark:text-white text-[20px]">{c}</span>
                   </div>
                 ))
               ) : (
-                <p className="text-gray-500 col-span-2">
+                <p className="text-gray-500 dark:text-white text-[20px] col-span-2">
                   Curriculum coming soon!
                 </p>
               )}
@@ -120,19 +120,19 @@ export default async function CourseDetailPage({ params }: PageProps) {
 
           {/* Requirements */}
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg border dark:border-gray-700">
-            <h2 className="text-2xl font-bold mb-6">Requirements</h2>
+            <h2 className="text-[30px] font-bold mb-6">Requirements</h2>
             <ul className="space-y-4">
               {course.content?.requirements?.length ? (
                 course.content.requirements.map((req, idx) => (
                   <li key={idx} className="flex items-start gap-4">
                     <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2" />
-                    <span className="text-gray-700 dark:text-gray-200">
+                    <span className="text-gray-700 dark:text-white text-[20px]">
                       {req}
                     </span>
                   </li>
                 ))
               ) : (
-                <li className="text-gray-500">No requirements listed.</li>
+                <li className="text-gray-500 dark:text-white text-[20px]">No requirements listed.</li>
               )}
             </ul>
           </div>
@@ -141,23 +141,31 @@ export default async function CourseDetailPage({ params }: PageProps) {
         {/* Right Sidebar */}
         <div className="space-y-8">
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg border dark:border-gray-700">
-            <h3 className="text-xl font-bold mb-6">Course Information</h3>
+            <h3 className="text-[30px] font-bold mb-6 ">Course Information</h3>
             <div className="space-y-6 text-gray-700 dark:text-gray-300">
               <p>
-                <span className="font-semibold">Instructor:</span>{" "}
+                <span className="font-semibold text-[20px]">Instructor:</span>{" "}
+                <span className="text-[20px]">
                 {course.instructor}
+                </span>
               </p>
               <p>
-                <span className="font-semibold">Level:</span>{" "}
+                <span className="font-semibold text-[20px]">Level:</span>{" "}
+                <span className="text-[20px]">
                 {course.level ?? "All Levels"}
+                </span>
               </p>
               <p>
-                <span className="font-semibold">Duration:</span>{" "}
+                <span className="font-semibold text-[20px]">Duration:</span>{" "}
+                <span className="text-[20px]">
                 {course.duration ?? "N/A"}
+                </span>
               </p>
               <p>
-                <span className="font-semibold">Total Lessons:</span>{" "}
+                <span className="font-semibold text-[20px]">Total Lessons:</span>{" "}
+                <span className="text-[20px]">
                 {course.lessons ?? 0}
+                </span>
               </p>
               <div className="flex items-center gap-2">
                 <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />

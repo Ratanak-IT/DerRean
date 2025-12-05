@@ -52,20 +52,20 @@ export default function DashboardPage() {
 
   if (!authenticated) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen space-y-4">
-        <h2 className="text-2xl font-bold">Enter Dashboard Credentials</h2>
+      <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-800 space-y-4">
+        <h2 className="text-[30px] dark:text-white font-bold">Enter Dashboard Credentials</h2>
 
         <input
           type="text"
           placeholder="Username"
-          className="border px-4 py-2 rounded w-64"
+          className="border px-4 py-2 dark:text-gray-100 rounded w-64"
           value={usernameInput}
           onChange={(e) => setUsernameInput(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
-          className="border px-4 py-2 rounded w-64"
+          className="border px-4 py-2 rounded w-64 dark:text-white"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
         />
@@ -79,8 +79,8 @@ export default function DashboardPage() {
     );
   }
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-bold mt-[50px]">Course Dashboard</h1>
+    <div className="p-6 space-y-6 dark:bg-gray-800">
+      <h1 className="text-2xl font-bold mt-[60px] dark:text-white">Course Dashboard</h1>
 
       {/* Add Course Button */}
 

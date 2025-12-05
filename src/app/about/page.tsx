@@ -327,8 +327,8 @@ export default function AboutPage() {
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 mb-6 group-hover:scale-110 transition-transform">
                   <value.icon className="w-10 h-10 text-indigo-600 dark:text-indigo-400" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <h3 className="text-[25px] font-bold mb-4">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-100 ">
                   {value.description}
                 </p>
               </motion.div>

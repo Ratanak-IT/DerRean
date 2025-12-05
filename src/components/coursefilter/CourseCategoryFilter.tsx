@@ -40,7 +40,7 @@ export default function CourseCategoryFilter({
       {isOpen && (
         <ul className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 shadow-lg rounded-2xl border border-gray-300 dark:border-gray-700 max-h-60 overflow-y-auto">
           <li
-            className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-2xl"
+            className="px-4 py-2 hover:bg-blue-500 hover:text-white dark:text-white cursor-pointer rounded-2xl"
             onClick={() => handleSelect("All")}
           >
             All Categories
@@ -48,7 +48,7 @@ export default function CourseCategoryFilter({
           {categories.map((cat) => (
             <li
               key={cat}
-              className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-2xl"
+              className="px-4 py-2 hover:bg-blue-500 dark:text-white hover:text-white cursor-pointer rounded-2xl"
               onClick={() => handleSelect(cat)}
             >
               {cat}
