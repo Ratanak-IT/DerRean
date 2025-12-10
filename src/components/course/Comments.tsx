@@ -42,8 +42,7 @@ export default function Comments({ courseId }: { courseId: string }) {
 
         let avatarPublicUrl: string | null = null;
         if (profile?.avatar_url) {
-          avatarPublicUrl = supabase
-            .storage
+          avatarPublicUrl = supabase.storage
             .from("avatars")
             .getPublicUrl(profile.avatar_url).data.publicUrl;
         }
@@ -131,7 +130,10 @@ export default function Comments({ courseId }: { courseId: string }) {
     if (diffMins < 60) return `${diffMins}m ago`;
     if (diffHours < 24) return `${diffHours}h ago`;
     if (diffDays < 7) return `${diffDays}d ago`;
-    return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    return date.toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+    });
   };
 
   return (
@@ -194,7 +196,7 @@ export default function Comments({ courseId }: { courseId: string }) {
                   className={`flex gap-5 p-6 rounded-2xl bg-gradient-to-br from-gray-50/80 to-white dark:from-gray-800/50 dark:to-gray-900/30 border border-gray-300 dark:border-gray-700 hover:shadow-xl transition-all duration-500 ${
                     idx === 0 ? "ring-2 ring-indigo-500/30" : ""
                   }`}
-                >
+                >   
                   <div className="w-12 h-12 rounded-full overflow-hidden">
   {c.avatar_url ? (
     <Image
@@ -207,7 +209,7 @@ export default function Comments({ courseId }: { courseId: string }) {
   ) : (
     <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
       <span className="text-white text-lg font-bold">
-        {c.full_name?.[0].toUpperCase() || "U"}
+        {c.full_name?.charAt(0)?.toUpperCase() || "U"}
       </span>
     </div>
   )}
