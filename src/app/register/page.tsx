@@ -142,7 +142,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-black text-white rounded-md p-2 hover:bg-gray-900 disabled:opacity-50"
+            className="w-full bg-gray-900 text-white rounded-md p-2 hover:bg-gray-900 disabled:opacity-50"
           >
             {loading ? "Registering..." : "Register"}
           </button>
@@ -153,7 +153,7 @@ export default function RegisterPage() {
           <button
             onClick={handleGoogleRegister}
             disabled={loading}
-            className="w-full border border-gray-300 rounded-md p-2 flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"
+            className="w-full dark:text-white border border-gray-300 rounded-md p-2 flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"
           >
             <Chrome size={18} /> Continue with Google
           </button>

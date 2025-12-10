@@ -73,86 +73,104 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <Toaster position="top-right" reverseOrder={false} />
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
+  <Toaster position="top-right" reverseOrder={false} />
 
-      <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-sm">
-        <h2 className="text-xl font-bold mb-1">Login</h2>
-        <p className="text-gray-500 mb-4 text-sm">Login to your account to continue</p>
+  <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 w-full max-w-sm">
+    <h2 className="text-xl font-bold mb-1 text-gray-900 dark:text-white">Login</h2>
+    <p className="text-gray-500 dark:text-gray-300 mb-4 text-sm">
+      Login to your account to continue
+    </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              className="w-full mt-1 border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Email */}
+      <div>
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          placeholder="m@example.com"
+          className="w-full border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500
+                     dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
 
-          <div>
-            <label htmlFor="password" className="text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <div className="relative">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="********"
-                className="w-full mt-1 border rounded-md p-2 pr-10"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
-          </div>
-
-          {error && (
-            <div className="text-red-600 text-sm border border-red-400 bg-red-50 p-2 rounded-md">
-              {error}
-            </div>
-          )}
+      {/* Password */}
+      <div>
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
+          Password
+        </label>
+        <div className="relative">
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="********"
+            className="w-full border rounded-md p-2 pr-10 focus:ring-blue-500 focus:border-blue-500 
+                       dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
           <button
-            type="submit"
-            className="w-full bg-black text-white rounded-md p-2 hover:bg-gray-900 disabled:opacity-50"
-            disabled={loading}
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black dark:text-gray-300"
           >
-            {loading ? "Logging in..." : "Login"}
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
-        </form>
-
-        <div className="mt-4">
-          <button
-            onClick={handleGoogleLogin}
-            className="w-full border border-gray-300 rounded-md p-2 flex items-center justify-center gap-2 hover:bg-gray-100"
-            disabled={loading}
-          >
-            <Chrome size={18} />
-            Login with Google
-          </button>
-        </div>
-
-        <div className="mt-4 text-center text-sm">
-          Do not have an account?{" "}
-          <Link href="/register" className="text-blue-600 hover:underline">
-            Create one
-          </Link>
         </div>
       </div>
+
+      {/* Error Message */}
+      {error && (
+        <div className="text-red-600 text-sm border border-red-400 bg-red-50 p-2 rounded-md">
+          {error}
+        </div>
+      )}
+
+      {/* Login Button */}
+      <button
+        type="submit"
+        className="w-full bg-black dark:bg-gray-900 text-white rounded-md p-2 hover:bg-gray-900 disabled:opacity-50"
+        disabled={loading}
+      >
+        {loading ? "Logging in..." : "Login"}
+      </button>
+    </form>
+
+    {/* Google Login */}
+    <div className="mt-4">
+      <button
+        onClick={handleGoogleLogin}
+        className="w-full dark:text-white border border-gray-300 rounded-md p-2 flex items-center justify-center gap-2 
+                   hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"
+        disabled={loading}
+      >
+        <Chrome size={18} />
+        Login with Google
+      </button>
     </div>
+
+    {/* Redirect */}
+    <div className="mt-4 text-center text-sm text-gray-500 dark:text-gray-300">
+      Do not have an account?{" "}
+      <Link href="/register" className="text-blue-600 hover:underline">
+        Create one
+      </Link>
+    </div>
+  </div>
+</div>
   );
 }

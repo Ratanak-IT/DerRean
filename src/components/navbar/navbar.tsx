@@ -72,7 +72,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+            <div className="w-14 h-12 rounded-2xl overflow-hidden flex items-center justify-center bg-gray-200 dark:bg-gray-700">
               <Image
                 src="/logo.jpg"
                 alt="PlovRean Logo"
