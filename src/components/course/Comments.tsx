@@ -40,6 +40,16 @@ export default function Comments({ courseId }: { courseId: string }) {
           .eq("id", c.user_id)
           .single();
 
+        const fullName = profile?.full_name || "User";
+
+        // If full_name is missing, update the profile table
+        if (!profile?.full_name) {
+          await supabase
+            .from("profiless")
+            .update({ full_name: fullName })
+            .eq("id", c.user_id);
+        }
+
         let avatarPublicUrl: string | null = null;
         if (profile?.avatar_url) {
           avatarPublicUrl = supabase.storage
@@ -52,7 +62,7 @@ export default function Comments({ courseId }: { courseId: string }) {
           content: c.content,
           created_at: c.created_at,
           user_email: profile?.email ?? null,
-          full_name: profile?.full_name ?? "Anonymous",
+          full_name: fullName,
           avatar_url: avatarPublicUrl,
         };
       })
@@ -196,25 +206,24 @@ export default function Comments({ courseId }: { courseId: string }) {
                   className={`flex gap-5 p-6 rounded-2xl bg-gradient-to-br from-gray-50/80 to-white dark:from-gray-800/50 dark:to-gray-900/30 border border-gray-300 dark:border-gray-700 hover:shadow-xl transition-all duration-500 ${
                     idx === 0 ? "ring-2 ring-indigo-500/30" : ""
                   }`}
-                >   
+                >
                   <div className="w-12 h-12 rounded-full overflow-hidden">
-  {c.avatar_url ? (
-    <Image
-      src={c.avatar_url}
-      alt={c.full_name ?? "User"}
-      width={48}
-      height={48}
-      className="w-full h-full object-cover"
-    />
-  ) : (
-    <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-      <span className="text-white text-lg font-bold">
-        {c.full_name?.charAt(0)?.toUpperCase() || "U"}
-      </span>
-    </div>
-  )}
-</div>
-
+                    {c.avatar_url ? (
+                      <Image
+                        src={c.avatar_url}
+                        alt={c.full_name ?? "User"}
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <span className="text-white text-lg font-bold">
+                          {c.full_name?.[0].toUpperCase() || "U"}
+                        </span>
+                      </div>
+                    )}
+                  </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
