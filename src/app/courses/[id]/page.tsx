@@ -7,7 +7,7 @@ import BackButton from "@/components/backbutton/BackButton";
 import EnrollButton from "@/components/enrollbutton/EnrollButton";
 import { CourseDetailBanner } from "@/components/banner/CourseDetailBanner";
 import { Course } from "@/types/course";
-
+import Comments from "@/components/course/Comments";
 
 export const revalidate = 60; // ISR cache
 
@@ -24,8 +24,8 @@ function getYouTubeId(url: string) {
 }
 
 // Helper function to check if URL is YouTube
-function isYouTube(url: string) {
-  return url.includes("youtu");
+function isYouTube(url: string | undefined | null) {
+  return !!url && url.includes("youtu");
 }
 
 export default async function CourseDetailPage({ params }: PageProps) {
@@ -176,6 +176,9 @@ export default async function CourseDetailPage({ params }: PageProps) {
               )}
             </ul>
           </div>
+
+          {/* Comments (Client Component) */}
+          <Comments courseId={course.id} />
         </div>
 
         {/* Right Sidebar */}
